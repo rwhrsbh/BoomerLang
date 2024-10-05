@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BoomerScript Interpreter</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      textarea {
+        width: 100%;
+        height: 200px;
+      }
+      #output {
+        margin-top: 20px;
+        white-space: pre-wrap;
+        background-color: #f4f4f4;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+      }
+      button {
+        margin-top: 10px;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      .meme {
+        max-width: 100%;
+        height: auto;
+        margin: 10px 0;
+      }
+      .guide {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 5px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>BoomerScript Interpreter</h1>
+
+    <textarea
+      id="boomerCode"
+      placeholder="Enter your BoomerScript here..."
+    ></textarea>
+    <br />
+    <button onclick="runBoomerCode()">Run BoomerScript</button>
+
+    <div id="output"></div>
+
+    <div class="guide">
+      <h2>BoomerScript Guide</h2>
+      <p>
+        Welcome to BoomerScript, the programming language that'll make you say,
+        "They don't code like they used to!"
+      </p>
+
+      <img
+        src="https://media.istockphoto.com/id/505489416/photo/angry-senior-business-man-working-on-computer-screaming.jpg?s=612x612&w=0&k=20&c=AumSyMR_UfETc_lqsNeXKA0_HUUyZm5qVoDnaWFdVZ0%3D"
+        alt="Old man yelling at computer"
+        class="meme"
+      />
+
+      <h3>Key Features:</h3>
+      <ul>
+        <li>
+          <strong>backInMyDay</strong>: Function declaration (Because functions
+          were better back in the day)
+        </li>
+        <li>
+          <strong>kidsTheseDays</strong>: Variable declaration (These young
+          whippersnappers and their variables)
+        </li>
+        <li>
+          <strong>nowListenHere</strong>: Return statement (Pay attention,
+          sonny!)
+        </li>
+        <li>
+          <strong>ifItAintBrokeDontFixIt</strong>: If statement (Why change what
+          works?)
+        </li>
+        <li>
+          <strong>wellBackInMyDay</strong>: Else statement (Let me tell you how
+          we did it...)
+        </li>
+        <li>
+          <strong>keepOnTruckin</strong>: While loop (Just keep going, like we
+          did uphill both ways)
+        </li>
+        <li>
+          <strong>timesAreAChangin</strong>: For loop (But we'll adapt, by gum!)
+        </li>
+        <li>
+          <strong>tellEm</strong>: Print statement (Speak up, we can't hear
+          you!)
+        </li>
+        <li>
+          <strong>whosYourDaddy</strong>: Equality check (Show some respect!)
+        </li>
+        <li>
+          <strong>oneMoreGo</strong>: Increment operator (One more for the road)
+        </li>
+        <li>
+          <strong>slowingDown</strong>: Decrement operator (Not as spry as we
+          used to be)
+        </li>
+      </ul>
+
+      <img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhr8mJAL5CelCEKXPX_VNx6Wqmpk47yP_DnQ&s"
+        alt="Back in my day meme"
+        class="meme"
+      />
+
+      <h3>Example:</h3>
+      <pre>
+backInMyDay addTwoNumbers(a, b) {
+    kidsTheseDays result = a + b;
+    nowListenHere result;
+}
+
+backInMyDay main() {
+    kidsTheseDays x = 5;
+    kidsTheseDays y = 10;
+    kidsTheseDays sum = addTwoNumbers(x, y);
+    
+    ifItAintBrokeDontFixIt (sum whosYourDaddy 15) {
+        tellEm("Sum is 15, just like I calculated on my abacus!");
+    } wellBackInMyDay {
+        tellEm("Sum ain't 15, must be new math!");
+    }
+
+    keepOnTruckin (x > 0) {
+        tellEm("Counting down: " + x);
+        slowingDown(x);
+    }
+}
+
+main();
+      </pre>
+
+      <p>Now get off my lawn and start coding like it's 1969!</p>
+
+      <img
+        src="https://scontent.flwo4-2.fna.fbcdn.net/v/t39.30808-6/459483186_2759232044239334_4076722405621222308_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=PLqAHOAkeJUQ7kNvgH63fTz&_nc_ht=scontent.flwo4-2.fna&_nc_gid=AC7_Rd-qcSagyzpRlmSFkZC&oh=00_AYBxOPtrE0IOIzqggYSPS5snOx1mj10ro65D7he3G1zflg&oe=67070650"
+        alt="Get off my lawn meme"
+        class="meme"
+      />
+    </div>
+
+    <script>
+      function runBoomerCode() {
+        const code = document.getElementById("boomerCode").value;
+        let outputDiv = document.getElementById("output");
+        outputDiv.innerHTML = "";
+
+        try {
+          const parsedCode = parseBoomerScript(code);
+
+          const originalLog = console.log;
+          console.log = function () {
+            outputDiv.innerHTML += Array.from(arguments).join(" ") + "<br>";
+            originalLog.apply(console, arguments);
+          };
+
+          eval(parsedCode);
+
+          console.log = originalLog;
+          console.log("Translated JS:", parsedCode);
+        } catch (error) {
+          outputDiv.innerHTML = "Error: " + error.message;
+        }
+      }
+
+      function parseBoomerScript(code) {
+        let jsCode = code
+          .replace(/backInMyDay\s+(\w+)\s*\((.*?)\)\s*{/g, "function $1($2) {")
+          .replace(/kidsTheseDays\s+(\w+)\s*=\s*(.*);/g, "let $1 = $2;")
+          .replace(/nowListenHere\s+(.*);/g, "return $1;")
+          .replace(/ifItAintBrokeDontFixIt\s*\((.*?)\)\s*{/g, "if ($1) {")
+          .replace(/wellBackInMyDay\s*{/g, "else {")
+          .replace(/keepOnTruckin\s*\((.*?)\)\s*{/g, "while ($1) {")
+          .replace(/timesAreAChangin\s*\((.*?)\)\s*{/g, "for ($1) {")
+          .replace(/tellEm\s*\((.*?)\);/g, "console.log($1);")
+          .replace(/(\w+)\s+whosYourDaddy\s+(\w+)/g, "$1 === $2")
+          .replace(/oneMoreGo\s*\((.*?)\);/g, "$1++;")
+          .replace(/slowingDown\s*\((.*?)\);/g, "$1--;")
+          .replace(/(\w+)\s*\(\s*\);/g, "$1();");
+
+        return jsCode;
+      }
+    </script>
+  </body>
+</html>
