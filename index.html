@@ -170,16 +170,14 @@ main();
         try {
           const parsedCode = parseBoomerScript(code);
 
-          const originalLog = console.log;
+          let originalLog = console.log;
           console.log = function () {
             outputDiv.innerHTML += Array.from(arguments).join(" ") + "<br>";
-            originalLog.apply(console, arguments);
           };
 
           eval(parsedCode);
 
           console.log = originalLog;
-          console.log("Translated JS:", parsedCode);
         } catch (error) {
           outputDiv.innerHTML = "Error: " + error.message;
         }
